@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+ /* For laptop design*/
+ 
+
+ 
+header {
+    box-shadow: 0px -10px 10px -7px rgba(0,0,0,0.6) inset;
+}
+ /* For tablet design */
+ @media screen and (max-width: 959px){
+     
+ }
+ /* For smartphone design */
+ @media screen and (max-width: 480px){
+     
+ }
+ 
+ 
