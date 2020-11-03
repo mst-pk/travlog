@@ -2,11 +2,11 @@ class EventsController < ApplicationController
     before_action :require_logged_in
     
     def index
-        @events = current_user.events.order(id: :desc).page(params[:page])
+        @events = Event.order(id: :desc).page(params[:page])
     end
     
     def show
-        @event = current_user.events
+        @event = Event.find(params[:id])
     end
     
     def new

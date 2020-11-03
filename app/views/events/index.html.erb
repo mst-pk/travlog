@@ -1,0 +1,15 @@
+<ul class="list-unstyled">
+    <% @events.each do |event| %>
+      <li class="media">
+        <div class="media-body">
+          <div>
+            <%= event.title %>
+          </div>
+          <div>
+            <p><%= link_to 'View event', event_path(event) %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+</ul>
+  
