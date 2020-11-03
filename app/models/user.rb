@@ -1,9 +1,9 @@
 class User < ApplicationRecord
     before_save { self.email.downcase! }
     
-    has_many :events
+    has_many :events, dependent: :destroy
     
-    enum gender: { 男: 0, 女: 1, その他: 2 }
+    enum gender: { Male: 0, Female: 1, Other: 2 }
     
     mount_uploader :image, ImageUploader
     mount_uploader :background_image, ImageUploader
