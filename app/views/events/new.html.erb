@@ -15,6 +15,11 @@
                     <%= f.label :event_date, "旅行日" %><br>
                     <%= f.date_select :event_date, start_year: 1940, end_year: Time.now.year, class: "form-control" %>
                 </div>
+                <div>
+                    <%= f.fields_for :event_pictures do |i| %>
+                        <%= i.file_field :picture, multiple: true, name: "event_pictures[picture][]" %>
+                    <% end %>
+                </div>
                 <%= f.submit "投稿", class: "btn btn-primary btn-block mb-5" %>
             <% end %>
         </div>
