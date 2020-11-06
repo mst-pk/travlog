@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users
+  resources :users do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+  
   get 'signup', to: 'users#new'
   
   resources :events
