@@ -12,8 +12,8 @@
         <% end %>
         <p class="text-center"><%= @user.name %></p>
         <div class="text-center">
-            <a href="#" class="mr-3">Follow</a>
-            <a href="#" class="ml-2">Follower</a>
+            <a href="#" class="mr-3">Follow<span class="badge badge-light"><%= @count_followings %></span></a>
+            <a href="#" class="ml-2">Follower<span class="badge badge-light"><%= @count_followers %></span></a>
         </div>
         <% unless current_user == @user %>
           <% if current_user.following?(@user) %>

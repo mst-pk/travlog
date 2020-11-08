@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        counts(@user)
     end
     
     def edit
@@ -55,6 +56,18 @@ class UsersController < ApplicationController
             flash[:danger] = "無効な操作です。"
             redirect_to users_url
         end
+    end
+    
+    def followings
+        @user = User.find(params[:id])
+        @followings = @user.followings
+        counts(@user)
+    end
+    
+    def followers
+        @user = User.find(params[:id])
+        @followers = @user.followers
+        counts(@user)
     end
     
     private
