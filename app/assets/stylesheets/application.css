@@ -20,6 +20,12 @@
 header {
     box-shadow: 0px -10px 10px -7px rgba(0,0,0,0.6) inset;
 }
+
+#flash-messages {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+}
  /* For tablet design */
  @media screen and (max-width: 959px){
      
