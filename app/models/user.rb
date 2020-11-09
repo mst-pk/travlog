@@ -6,6 +6,8 @@ class User < ApplicationRecord
     has_many :followings, through: :relationships, source: :follow
     has_many :reverse_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
     has_many :followers, through: :reverse_relationships, source: :user
+    has_many :likes, dependent: :destroy
+    has_many :like_events, through: :likes, source: :event
     
     enum gender: { Male: 0, Female: 1, Other: 2 }
     
@@ -30,5 +32,18 @@ class User < ApplicationRecord
     
     def following?(other_user)
         self.followings.include?(other_user)
+    end
+    
+    def like(event)
+        self.likes.find_or_create_by(event_id: event.id)
+    end
+    
+    def unlike(event)
+        like = self.likes.find_by(event_id: event.id)
+        like.destroy if like
+    end
+    
+    def liked?(event)
+        self.like_events.include?(event)
     end
 end
