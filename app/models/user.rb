@@ -46,4 +46,9 @@ class User < ApplicationRecord
     def liked?(event)
         self.like_events.include?(event)
     end
+    
+    def age
+        birth_date = self.birthday
+        (Date.today.strftime('%Y%m%d').to_i - birth_date.strftime('%Y%m%d').to_i) / 10000
+    end
 end

@@ -13,11 +13,12 @@
 }
 
 .carousel-item {
-    height: auto;
+    background-color: black;
+    border-radius: 5px;
     img {
         display: block;
-        height: auto;
-        max-width: 100%;
+        text-align: center;
+        margin: 0 auto;
     }
-    
+ 
 }
