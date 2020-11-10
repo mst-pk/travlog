@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
     before_action :require_logged_in
-    before_action :correct_user, only: [:edit, :update, :destroy]
+    before_action :correct_user, only: [:update, :destroy]
     
     def index
         @events = Event.order(id: :desc).page(params[:page])
@@ -34,6 +34,7 @@ class EventsController < ApplicationController
     end
     
     def edit
+        @event = Event.find(params[:id])
     end
     
     def update

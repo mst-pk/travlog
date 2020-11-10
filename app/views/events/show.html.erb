@@ -37,9 +37,46 @@
     </a>
 </div>
 <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-8 offset-2" id="event-comment">
       <p class="text-center"><%= @event.comment %></p>
     </div>
 </div>
-<%= link_to "投稿削除", event_path(@user), method: :delete %>
-<%= link_to "投稿編集", edit_event_path(@event) %>
+<div class="row">
+  <div class="col-8 offset-2" id="map"></div>
+</div>
+<div class="row">
+  <div class="col-8 offset-2 text-center mt-4 mb-4">
+    <%= link_to "投稿削除", event_path(@user), method: :delete, class: "btn btn-danger rounded-pill mr-1" %>
+    <%= link_to "投稿編集", edit_event_path(@event), class: "btn btn-primary rounded-pill ml-1" %>
+  </div>
+</div>
+
+
+<script>
+  function initMap() {
+    var location = { lat: <%= @event.latitude %>, lng: <%= @event.longitude %> };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: location
+    });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+    
+    var contentString = '<%= @event.address %>';
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+    
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: contentString
+    });
+    
+    marker.addListener('click',function() {
+        infowindow.open(map,marker);
+    });
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAP_API_KEY']%>&callback=initMap"></script>
+
