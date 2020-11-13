@@ -51,10 +51,9 @@
   </div>
 </div>
 
-
 <script>
   function initMap() {
-    var location = { lat: <%= @event.latitude %>, lng: <%= @event.longitude %> };
+    var location = { lat: <%= @event.latitude %> , lng: <%= @event.longitude %> };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: location
@@ -76,7 +75,6 @@
     marker.addListener('click',function() {
         infowindow.open(map,marker);
     });
-}
+  }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAP_API_KEY']%>&callback=initMap"></script>
 

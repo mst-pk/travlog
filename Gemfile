@@ -64,4 +64,6 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'geocoder'
+gem 'jquery-rails'
+gem 'exifr'
 
