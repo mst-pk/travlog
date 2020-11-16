@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_045437) do
+ActiveRecord::Schema.define(version: 2020_11_16_154950) do
 
   create_table "event_pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "picture"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2020_11_15_045437) do
     t.datetime "updated_at", null: false
     t.bigint "travel_id"
     t.index ["travel_id"], name: "index_events_on_travel_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "travel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["travel_id"], name: "index_favorites_on_travel_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_11_15_045437) do
 
   add_foreign_key "event_pictures", "events"
   add_foreign_key "events", "travels"
+  add_foreign_key "favorites", "travels"
+  add_foreign_key "favorites", "users"
   add_foreign_key "likes", "events"
   add_foreign_key "likes", "users"
   add_foreign_key "relationships", "users"

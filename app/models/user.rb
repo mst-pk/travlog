@@ -8,6 +8,8 @@ class User < ApplicationRecord
     has_many :followers, through: :reverse_relationships, source: :user
     has_many :likes, dependent: :destroy
     has_many :like_events, through: :likes, source: :event
+    has_many :favorites, dependent: :destroy
+    has_many :favorite_travels, through: :favorites, source: :travel
     
     enum gender: { Male: 0, Female: 1, Other: 2 }
     
@@ -45,6 +47,19 @@ class User < ApplicationRecord
     
     def liked?(event)
         self.like_events.include?(event)
+    end
+    
+    def favorite(travel)
+        self.favorites.find_or_create_by(travel_id: travel.id)
+    end
+    
+    def unfavorite(travel)
+        travel = self.favorites.find_or_create_by(travel_id: travel.id)
+        travel.destroy if travel
+    end
+    
+    def favorite?(travel)
+        self.favorite_travels.include?(travel)
     end
     
     def age
