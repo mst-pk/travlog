@@ -8,8 +8,8 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbar-menu">
             <ul class="navbar-nav">
                 <% if logged_in? %>
-                    <li><%= link_to "新規投稿", new_event_path, class: "nav-link" %></li>
-                    <li><%= link_to "投稿一覧", events_path, class: "nav-link" %></li>
+                    <li><%= link_to "新規投稿", new_travel_path, class: "nav-link" %></li>
+                    <li><%= link_to "投稿一覧", travels_path, class: "nav-link" %></li>
                     <li><%= link_to "ユーザー一覧", users_path, class: "nav-link" %></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><%= current_user.name %></a>

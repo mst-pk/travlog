@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
+  get 'signup', to: 'users#new'
+  
   resources :users do
     member do
       get :followings
@@ -17,9 +19,10 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'signup', to: 'users#new'
+  resources :travels do
+      resources :events
+  end
   
-  resources :events
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   

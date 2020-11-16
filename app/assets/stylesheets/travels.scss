@@ -1,0 +1,48 @@
+// Place all the styles related to the travels controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#travel-index-body {
+    
+}
+
+#travel_index_img {
+    img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+}
+
+.travel-show-top {
+    background: rgb(121,118,118);
+    background: radial-gradient(circle, rgba(121,118,118,1) 26%, rgba(57,57,57,1) 100%);
+    width: 100%;
+    height: 450px;
+    color: white;
+    img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        border-radius: 50px;
+    }
+    .top-left {
+        height: 450px;
+        width: 100%;
+    }
+    .top-right {
+        height: 450px;
+        width: 100%;
+        .top-right-contents {
+            border: double 6px white;
+            .pb-2 {
+                border-bottom: dashed 2px;
+            }
+            img {
+                height: 64px;
+                width: 64px;
+                background: white;
+            }
+        }
+    }
+}

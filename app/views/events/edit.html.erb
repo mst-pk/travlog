@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-8 offset-2 border shadow mt-5">
             <h1 class="text-center mt-4">投稿編集</h1>
-            <%= form_with(model: @event, local: true) do |f| %>
+            <%= form_with(model: [@travel,@event], local: true) do |f| %>
                 <div>
                     <%= f.fields_for :event_pictures do |i| %>
                         <%= i.file_field :picture %>

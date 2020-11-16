@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  travel_image: MyString
+  genre: 1
+  start_date: 2020-11-15
+  end_date: 2020-11-15
+  user: one
+
+two:
+  title: MyString
+  travel_image: MyString
+  genre: 1
+  start_date: 2020-11-15
+  end_date: 2020-11-15
+  user: two

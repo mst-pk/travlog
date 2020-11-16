@@ -2,9 +2,7 @@ class ApplicationController < ActionController::Base
     include SessionsHelper
     
     def counts(user)
-        @count_events = user.events.count
-        @count_followings = user.followings.count
-        @count_followers = user.followers.count
+        
     end
     
     private

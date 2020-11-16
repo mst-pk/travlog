@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_020555) do
+ActiveRecord::Schema.define(version: 2020_11_15_045437) do
 
   create_table "event_pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "picture"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_020555) do
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "title"
     t.text "comment"
     t.date "event_date"
@@ -30,7 +29,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_020555) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_events_on_user_id"
+    t.bigint "travel_id"
+    t.index ["travel_id"], name: "index_events_on_travel_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 2020_11_09_020555) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "travels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "travel_image"
+    t.integer "genre"
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_travels_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -66,9 +78,10 @@ ActiveRecord::Schema.define(version: 2020_11_09_020555) do
   end
 
   add_foreign_key "event_pictures", "events"
-  add_foreign_key "events", "users"
+  add_foreign_key "events", "travels"
   add_foreign_key "likes", "events"
   add_foreign_key "likes", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "travels", "users"
 end

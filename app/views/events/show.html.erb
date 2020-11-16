@@ -1,12 +1,7 @@
 <div class="container">
   <div class="row mt-5" id="event-show-top">
     <div class="offset-2 col-3 mb-5" id="event-show-user">
-      <% if @user.image? %>
-          <img src="<%= @user.image %>">
-      <% else %>
-          <img src="/assets/default.png">
-      <% end %>
-      <p><%= @user.name %></p>
+      
     </div>
     <div class="col-5 offseet-2 text-center">
         <h2><%= @event.title %></h2>
@@ -46,8 +41,8 @@
 </div>
 <div class="row">
   <div class="col-8 offset-2 text-center mt-4 mb-4">
-    <%= link_to "投稿削除", event_path(@user), method: :delete, class: "btn btn-danger rounded-pill mr-1" %>
-    <%= link_to "投稿編集", edit_event_path(@event), class: "btn btn-primary rounded-pill ml-1" %>
+    <%= link_to "投稿削除", travel_event_path([@travel,@event]), method: :delete, class: "btn btn-danger rounded-pill mr-1" %>
+    <%= link_to "投稿編集", edit_travel_event_path([@travel,@event]), class: "btn btn-primary rounded-pill ml-1" %>
   </div>
 </div>
 

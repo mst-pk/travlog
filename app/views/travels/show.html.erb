@@ -1,0 +1,51 @@
+<div class="travel-show-top">
+    <div class="container">
+        <div class="row text-center">
+            <div class="top-left col-5">
+                <h1 class="mt-4 mb-3"><%= @travel.title %></h1>
+                <p><%= @travel.start_date %> ~ <%= @travel.end_date %></p>
+                <%= image_tag "#{@travel.travel_image}", class: "mb-2" %>
+            </div>
+            <div class="top-right col-5 offset-2">
+                <div class="top-right-contents mt-3">
+                    <h3 class="mt-3">Date</h3>
+                    <p class="pb-2"><%= @travel.start_date %> ~ <%= @travel.end_date %></p>
+                    <h3>Genre</h3>
+                    <p class="pb-2"><%= @travel.genre %></p>
+                    <h3>User</h3>
+                    <%= link_to user_path(@user) do %>
+                        <%= image_tag "#{@user.image}" %>
+                        <p style="color: white;"><%= @user.name %></p>
+                    <% end %>
+                </div>
+                <% if current_user == @user %> 
+                    <%= link_to "編集", edit_travel_path(@travel), class: "btn btn-light border rounded-pill mr-2 mt-3" %>
+                    <%= link_to "削除", travel_path(@travel), method: :delete, class: "btn btn-danger rounded-pill ml-2 mt-3" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2 mt-5 text-center">
+            <%= link_to "Eventを作成", new_travel_event_path(@travel) %>
+            <% @events.each do |event| %>
+                <div class="row border shadow mt-4">
+                    <div class="col-6">
+                        <h3 class="border-bottom mt-3 mb-3 pb-2"><%= event.title %></h3>
+                        <h4>Date</h4>
+                        <p class=" border-bottom pb-2 mb-3"><%= event.event_date %><p>
+                        <h4>Location</h4>
+                        <p class="border-bottom pb-2"><%= event.address %></p>
+                        <%= link_to "Show", travel_event_path(@travel, event), class: "btn btn-primary rounded-pill mb-2" %>
+                    </div>
+                    <div class="col-6" id="travel_index_img">
+                        <%= image_tag "#{event.event_pictures.first.picture}", class: "p-2" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+

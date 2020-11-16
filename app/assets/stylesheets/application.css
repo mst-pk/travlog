@@ -14,7 +14,9 @@
  *= require_self
  */
  /* For laptop design*/
- 
+ *{
+   font-family: cursive;  
+ }
 
  
 header {

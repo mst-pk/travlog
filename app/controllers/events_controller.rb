@@ -3,27 +3,25 @@ class EventsController < ApplicationController
     before_action :require_logged_in
     before_action :correct_user, only: [:update, :destroy]
     
-    def index
-        @events = Event.order(id: :desc).page(params[:page])
-    end
-    
     def show
-        @event = Event.find(params[:id])
-        @event_picture = @event.event_pictures.all
-        @user = @event.user
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.find(params[:id])
+        @event_picture = @event.event_pictures
     end
     
     def new
-        @event = current_user.events.build
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.build
         5.times{ @event.event_pictures.build }
     end
     
     def create
-        @event = current_user.events.build(event_params)
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.build(event_params)
         get_location_from_jpeg if params[:address].nil?
         if @event.save
             flash[:success] = "投稿しました。"
-            redirect_to events_url
+            redirect_to [@travel,@event]
         else
             flash.now[:danger] = "投稿に失敗しました。"
             render :new
@@ -31,24 +29,27 @@ class EventsController < ApplicationController
     end
     
     def edit
-        @event = Event.find(params[:id])
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.find(params[:id])
         @event_picture = @event.event_pictures.where(event_id: @event.id)
         (5 - @event_picture.count).times{ @event.event_pictures.build }
     end
     
     def update
-        @event = Event.find(params[:id])
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.find(params[:id])
         get_location_from_jpeg if params[:address].nil?
         @event.update(update_event_params)
         flash[:success] = "投稿を編集しました"
-        redirect_to @event
+        redirect_to [@travel,@event]
     end
     
     def destroy
-        @event = Event.find(params[:id])
+        @travel = Travel.find_by(id: params[:travel_id])
+        @event = @travel.events.find(params[:id])
         @event.destroy
         flash[:success] = "投稿を削除しました。"
-        redirect_to events_url
+        redirect_to travel_url(@travel)
     end
     
     private
@@ -61,7 +62,7 @@ class EventsController < ApplicationController
         end
         
         def correct_user
-            @event = current_user.events.find_by(params[:id])
+            @event = current_user.travels.find_by(id: params[:travel_id]).events.find_by(params[:id])
             unless @event
                 redirect_to users_url
             end
