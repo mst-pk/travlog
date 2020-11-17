@@ -11,7 +11,7 @@ class User < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :favorite_travels, through: :favorites, source: :travel
     
-    enum gender: { Male: 0, Female: 1, Other: 2 }
+    enum gender: { 男性: 0, 女性: 1, その他: 2 }
     
     mount_uploader :image, ImageUploader
     mount_uploader :background_image, ImageUploader

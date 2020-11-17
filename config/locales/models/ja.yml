@@ -1,0 +1,19 @@
+ja:
+ activerecord:
+  model:
+   travel: Travel
+  attributes:
+   user:
+    name: ユーザー名
+    email: Eメール
+    password: パスワード
+    image: プロフィール画像
+    background_image: 背景画像
+    gender: 性別
+    birthday: 誕生日
+   travel:
+    title: Travel名
+    travel_image: 画像
+    genre: ジャンル
+    start_date: Travel開始日
+    end_date: Travel終了日

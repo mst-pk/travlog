@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "ログインに成功しました！"
       redirect_to @user
     else
-      flash.now[:danger] = "ログインに失敗しました。"
+      flash.now[:danger] = "Eメールまたはパスワードが違います。"
       render :new
     end
   end

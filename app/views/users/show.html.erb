@@ -5,11 +5,7 @@
         <img src="/assets/background_default" class=" card-img img-fluid">
     <% end %>
     <div class="card-img-overlay mt-5" id="user-show-topcontents">
-        <% if @user.image? %>
-            <img src="<%= @user.image %>" class="d-block mx-auto">
-        <% else %>
-            <img src="/assets/default.png" class="d-block mx-auto">
-        <% end %>
+        <%= render 'users/user_image', user: @user %>
         <p class="text-center"><%= @user.name %></p>
         <div class="text-center">
             <a href="<%= followings_user_path(@user) %>" class="mr-3">Follow<span class="badge badge-light"><%= @count_followings %></span></a>

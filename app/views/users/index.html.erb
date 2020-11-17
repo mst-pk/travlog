@@ -4,11 +4,7 @@
         <li class="media col-10 offset-1">
           <div class="media-body border shadow mt-5 p-3 row" id="user-index">
             <div class="col-2">
-              <% if user.image? %>
-                  <img src="<%= user.image %>">
-              <% else %>
-                  <img src="/assets/default.png">
-              <% end %>
+              <%= render 'users/user_image', user: user %>
               <div class="mt-2" style="font-family: cursive;">
                 <%= user.name %><br>
                 <%= link_to "Detail", user_path(user) %>

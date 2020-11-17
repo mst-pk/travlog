@@ -1,13 +1,16 @@
 <div class="travel-index-top card">
     <img class="card-img" src="assets/index_top.jpg">
-    <div class="card-img-overlay text-center mt-5">
+    <div class="card-img-overlay text-center mt-4">
         <% if current_user.followings.present? %>
             <h2>Travelを発見！</h2>
             <p>あなたの好みの旅を探そう！</p>
         <% else %>
             <h2>Travelを発見！</h2>
             <p>まだ誰もフォローしていない？<br>気になるトラベラーを見つけてフォローしよう！</p>
-            <%= link_to "ここをクリックしてトラベラーを見つける", users_path %>
+            <p>または、あなたの旅の記録を残そう！</p>
+            <%= link_to "トラベラーを見つけに行く", users_path, class: "btn btn-success rounded-pill mt-2" %>
+            <p class="m-3">OR</p>
+            <%= link_to "Travelを作成する", new_travel_path, class: "btn btn-success rounded-pill" %>
         <% end %>
     </div>
 </div>

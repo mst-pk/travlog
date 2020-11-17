@@ -14,7 +14,7 @@
                     <p class="pb-2"><%= @travel.genre %></p>
                     <h3>User</h3>
                     <%= link_to user_path(@user) do %>
-                        <%= image_tag "#{@user.image}" %>
+                        <%= render 'users/user_image', user: @user %>
                         <p style="color: white;"><%= @user.name %></p>
                     <% end %>
                 </div>

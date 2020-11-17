@@ -66,4 +66,5 @@ gem 'dotenv-rails'
 gem 'geocoder'
 gem 'jquery-rails'
 gem 'exifr'
+gem 'rails-i18n'
 
