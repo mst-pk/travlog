@@ -18,13 +18,13 @@
 
 $(document).on("turbolinks:load", function() {
     $(function() {
-        $(".hidden-field").change(function(e){
+        $(".hidden_field").change(function(e){
             var file = e.target.files[0];
             var reader = new FileReader();
             
             reader.onload = (function(file) {
                 return function(e) {
-                    $("#img-1").attr("src", e.target.result);
+                    $("#travel-form-img").attr("src", e.target.result);
                 };
             })(file);
             reader.readAsDataURL(file);

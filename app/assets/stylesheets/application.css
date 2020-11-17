@@ -14,13 +14,15 @@
  *= require_self
  */
  /* For laptop design*/
- *{
-   font-family: cursive;  
- }
-
- 
 header {
     box-shadow: 0px -10px 10px -7px rgba(0,0,0,0.6) inset;
+}
+
+.required-item {
+    color: white;
+    border-radius: 3px;
+    font-size: 15px;
+    background: #cc3333;
 }
 
 #flash-messages {

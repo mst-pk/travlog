@@ -3,24 +3,23 @@
       <% @users.each do |user| %>
         <li class="media col-10 offset-1">
           <div class="media-body border shadow mt-5 p-3 row" id="user-index">
-            <%= link_to user_path(user) do %>
-              <div class="col-2">
-                <% if user.image? %>
-                    <img src="<%= user.image %>">
-                <% else %>
-                    <img src="/assets/default.png">
-                <% end %>
-                <div class="mt-2" style="font-family: cursive;">
-                  <%= user.name %>
-                </div>
+            <div class="col-2">
+              <% if user.image? %>
+                  <img src="<%= user.image %>">
+              <% else %>
+                  <img src="/assets/default.png">
+              <% end %>
+              <div class="mt-2" style="font-family: cursive;">
+                <%= user.name %><br>
+                <%= link_to "Detail", user_path(user) %>
               </div>
-            <% end %>
+            </div>
             <div class="col-2 text-center mt-3" style="font-family: cursive;">
-              <p><%= user.age %></p>
-              <p><%= user.gender %></p>
+              <p>Age: <%= user.age %></p>
+              <p>Gender: <%= user.gender %></p>
             </div>
             <div class="col-7 text-center">
-              <%= user.about %>
+              <%= user.about.truncate(170) if user.about %>
             </div>
             <div class="col-1 d-flex align-items-center">
               <% unless current_user == user %>

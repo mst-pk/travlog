@@ -36,14 +36,34 @@
             <h3 class="text-center mt-5">プロフィール</h3>
             <div class="border shadow mt-5 mb-5 p-2">
                 <p>名前: <%= @user.name %></p>
-                <p>誕生日: <%= @user.birthday %></p>
+                <p>年齢: <%= @user.age %></p>
                 <p>性別: <%= @user.gender %></p>
                 <p>コメント: <%= @user.about %></p>
             </div>
         </div>
         <div class="col-9">
             <h2 class="text-center mt-5">投稿一覧</h2>
-            
+            <ul class="list-unstyled">
+                <% @user.travels.each do |travel| %>
+                    <li class="media">
+                    <div class="media-body mt-4" id="travel-index-body">
+                        <div class="row border shadow">
+                            <div class="col-6 text-center">
+                                <h3 class="border-bottom mt-3 mb-3 pb-2"><%= travel.title %></h3>
+                                <h4>During</h4>
+                                <p class=" border-bottom pb-2 mb-3"><%= travel.start_date %> ~ <%=travel.end_date%><p>
+                                <h4>Genre</h4>
+                                <p class="border-bottom pb-2"><%= travel.genre %></p>
+                                <%= link_to "Show", travel, class: "btn btn-primary rounded-pill" %>
+                            </div>
+                            <div class="col-6" id="travel_index_img">
+                                <%= image_tag "#{travel.travel_image}", class: "p-2 " %>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
         </div>
     </div>
 </div>

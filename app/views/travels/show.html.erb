@@ -34,7 +34,9 @@
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2 mt-5 text-center">
-            <%= link_to "Eventを作成", new_travel_event_path(@travel) %>
+            <% if current_user == @user %>
+                <%= link_to "Eventを作成", new_travel_event_path(@travel) %>
+            <% end %>
             <% @events.each do |event| %>
                 <div class="row border shadow mt-4">
                     <div class="col-6">

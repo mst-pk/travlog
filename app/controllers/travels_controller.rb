@@ -3,7 +3,7 @@ class TravelsController < ApplicationController
     before_action :correct_user, only: [:update, :destroy, :edit]
     
     def index
-        @travels = Travel.order(id: :desc).page(params[:page])
+        @travels = Travel.where(user_id: current_user.followings.ids + [current_user.id]).order(id: :desc).page(params[:page])
     end
     
     def show

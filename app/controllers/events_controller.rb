@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
     require 'exifr/jpeg'
     before_action :require_logged_in
-    before_action :correct_user, only: [:update, :destroy]
+    before_action :correct_user, only: [:update, :destroy, :edit]
     
     def show
         @travel = Travel.find_by(id: params[:travel_id])
@@ -10,13 +10,13 @@ class EventsController < ApplicationController
     end
     
     def new
-        @travel = Travel.find_by(id: params[:travel_id])
+        @travel = current_user.travels.find(params[:travel_id])
         @event = @travel.events.build
         5.times{ @event.event_pictures.build }
     end
     
     def create
-        @travel = Travel.find_by(id: params[:travel_id])
+        @travel = current_user.travels.find(params[:travel_id])
         @event = @travel.events.build(event_params)
         get_location_from_jpeg if params[:address].nil?
         if @event.save
