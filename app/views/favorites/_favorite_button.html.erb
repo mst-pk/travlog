@@ -1,11 +1,11 @@
 <% if current_user.favorite?(travel) %>
     <%= form_with(model: current_user.favorites.find_by(travel_id: travel.id), local: true, method: :delete) do |f| %>
         <%= hidden_field_tag :travel_id, travel.id %>
-        <%= f.submit "Unlike", class: "btn btn-danger" %>
+        <%= f.submit "いいね解除", class: "btn btn-danger" %>
     <% end %>
 <% else %>
     <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
         <%= hidden_field_tag :travel_id, travel.id %>
-        <%= f.submit "Like", class: "btn btn-primary" %>
+        <%= f.submit "いいね！", class: "btn btn-primary" %>
     <% end %>
 <% end %>

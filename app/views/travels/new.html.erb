@@ -2,36 +2,7 @@
     <div class="row">
         <div class="col-8 offset-2 border shadow mt-5">
             <h1 class="text-center p-4 border-bottom">Travel 新規作成</h1>
-            <%= form_with(model: @travel, local: true) do |f| %>
-                <%= render 'layouts/error_messages', model: f.object %>
-                <div class="form-group pb-4 border-bottom">
-                    <h4><%= f.label :title, "Travel名" %><span class="required-item ml-2">必須</span></h4>
-                    <%= f.text_field :title, class: "form-control" %>
-                </div>
-                <div class="form-group pb-4 border-bottom">
-                    <h4><%= f.label :travel_image, "画像" %></h4>
-                    <img id="travel-form-img"><br>
-                    <%= f.file_field :travel_image, class: "hidden_field" %>
-                </div>
-                <div class="form-group pb-4 border-bottom">
-                    <h4><%= f.label :genre, "ジャンル" %><span class="required-item ml-2">必須</span></h4>
-                    <div>
-                        <%= f.label "国内" %>
-                        <%= f.radio_button :genre, "国内" %>
-                        <%= f.label "海外" %>
-                        <%= f.radio_button :genre, "海外" %>
-                    </div>
-                </div>
-                <div class="form-group pb-4 border-bottom">
-                    <h4>期間<span class="required-item ml-2">必須</span></h4>
-                    <%= f.label :start_date, "Travel 開始日" %>
-                    <%= f.date_field :start_date, class: "mr-4" %>
-                
-                    <%= f.label :end_date, "Travel 終了日" %>
-                    <%= f.date_field :end_date %>
-                </div>
-                <%= f.submit "Travel作成", class: "btn btn-primary btn-block mb-4" %>
-            <% end %>
+            <%= render 'travels/travel_form' %>
         </div>
     </div>
 </div>

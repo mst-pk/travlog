@@ -1,0 +1,11 @@
+<% if current_user.liked?(event) %>
+    <%= form_with(model: current_user.likes.find_by(event_id: event.id), local: true, method: :delete) do |f| %>
+        <%= hidden_field_tag :event_id, event.id %>
+        <%= f.submit "Good!解除", class: "btn btn-danger" %>
+    <% end %>
+<% else %>
+    <%= form_with(model: current_user.likes.build, local: true) do |f| %>
+        <%= hidden_field_tag :event_id, event.id %>
+        <%= f.submit "Good！", class: "btn btn-primary" %>
+    <% end %>
+<% end %>

@@ -1,22 +1,20 @@
 class UsersController < ApplicationController
     before_action :require_logged_in, only: [:index, :show, :edit, :update, :destroy]
     before_action :already_logged_in, only: [:new, :create]
+    before_action :get_user_from_params, except: [:index, :new, :create]
     
     def index
         @users = User.order(id: :desc).page(params[:page]).per(30)
     end
     
     def show
-        @user = User.find(params[:id])
         counts(@user)
     end
     
     def edit
-        @user = User.find(params[:id])
     end
     
     def update
-        @user = User.find(params[:id])
         if current_user == @user
             if @user.update(user_params)
                 flash[:success] = "編集しました"
@@ -26,7 +24,8 @@ class UsersController < ApplicationController
                 render :edit
             end
         else
-            users_path
+            flash[:danger] = "無効な操作です。"
+            redirect_to users_url
         end
     end
     
@@ -39,7 +38,7 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             flash[:success] = "ようこそ！TraVLogへ！"
-            redirect_to @user
+            redirect_to travels_url
         else
             flash.now[:danger] = "新規登録に失敗しました。"
             render :new
@@ -47,7 +46,6 @@ class UsersController < ApplicationController
     end
     
     def destroy
-        @user = User.find(params[:id])
         if current_user == @user
             @user.destroy
             flash[:success] = "ユーザーを削除しました。"
@@ -59,19 +57,31 @@ class UsersController < ApplicationController
     end
     
     def followings
-        @user = User.find(params[:id])
-        @followings = @user.followings
+        @followings = @user.followings.order(id: :desc).page(params[:page]).per(30)
+        counts(@user)
     end
     
     def followers
-        @user = User.find(params[:id])
-        @followers = @user.followers
+        @followers = @user.followers.order(id: :desc).page(params[:page]).per(30)
+        counts(@user)
+    end
+    
+    def likes
+        @likes = @user.like_events.order(id: :desc).page(params[:page]).per(30)
+    end
+    
+    def favorites
+        @favorites = @user.favorite_travels.order(id: :desc).page(params[:page]).per(30)
     end
     
     private
     
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation, :birthday, :gender, :image, :background_image, :about)
+        end
+        
+        def get_user_from_params
+            @user = User.find(params[:id])
         end
         
 end

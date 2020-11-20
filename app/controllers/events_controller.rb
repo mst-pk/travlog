@@ -2,6 +2,7 @@ class EventsController < ApplicationController
     require 'exifr/jpeg'
     before_action :require_logged_in
     before_action :correct_user, only: [:update, :destroy, :edit]
+    before_action :get_travel, except: [:show]
     
     def show
         @travel = Travel.find_by(id: params[:travel_id])
@@ -10,13 +11,12 @@ class EventsController < ApplicationController
     end
     
     def new
-        @travel = current_user.travels.find(params[:travel_id])
+        @num = 0
         @event = @travel.events.build
-        5.times{ @event.event_pictures.build }
+        3.times{ @event.event_pictures.build }
     end
     
     def create
-        @travel = current_user.travels.find(params[:travel_id])
         @event = @travel.events.build(event_params)
         get_location_from_jpeg if params[:address].nil?
         if @event.save
@@ -29,14 +29,12 @@ class EventsController < ApplicationController
     end
     
     def edit
-        @travel = Travel.find_by(id: params[:travel_id])
         @event = @travel.events.find(params[:id])
         @event_picture = @event.event_pictures.where(event_id: @event.id)
         (5 - @event_picture.count).times{ @event.event_pictures.build }
     end
     
     def update
-        @travel = Travel.find_by(id: params[:travel_id])
         @event = @travel.events.find(params[:id])
         get_location_from_jpeg if params[:address].nil?
         @event.update(update_event_params)
@@ -45,7 +43,6 @@ class EventsController < ApplicationController
     end
     
     def destroy
-        @travel = Travel.find_by(id: params[:travel_id])
         @event = @travel.events.find(params[:id])
         @event.destroy
         flash[:success] = "投稿を削除しました。"
@@ -62,11 +59,13 @@ class EventsController < ApplicationController
         end
         
         def correct_user
-            @event = current_user.travels.find_by(id: params[:travel_id]).events.find_by(params[:id])
-            unless @event
-                redirect_to users_url
-            end
+            @travel = current_user.travels.find_by(id: params[:travel_id])
+            redirect_to users_url unless @travel
         end
+        
+         def get_travel
+            @travel = current_user.travels.find(params[:travel_id])
+         end
         
         def get_location_from_jpeg
             @event.event_pictures.each do |pic|

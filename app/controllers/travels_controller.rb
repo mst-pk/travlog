@@ -1,6 +1,7 @@
 class TravelsController < ApplicationController
     before_action :require_logged_in
     before_action :correct_user, only: [:update, :destroy, :edit]
+    before_action :get_travel, except: [:index, :show, :new, :create]
     
     def index
         @travels = Travel.where(user_id: current_user.followings.ids + [current_user.id]).order(id: :desc).page(params[:page])
@@ -28,14 +29,12 @@ class TravelsController < ApplicationController
     end
     
     def edit
-        @travel = Travel.find(params[:id])
     end
     
     def update
-        @travel = Travel.find(params[:id])
         if @travel.update(travel_params)
             flash[:success] = "編集しました。"
-            redirect_to travels_url
+            redirect_to travel_url(@travel)
         else
             flash[:danger] = "編集に失敗しました。"
             render :new
@@ -43,7 +42,6 @@ class TravelsController < ApplicationController
     end
     
     def destroy
-        @travel = Travel.find(params[:id])
         @travel.destroy
         flash[:success] = "Travelを削除しました"
         redirect_to travels_url
@@ -57,5 +55,9 @@ class TravelsController < ApplicationController
         def correct_user
             @travel = current_user.travels.find_by(id: params[:id])
             redirect_to travels_url unless @travel
+        end
+        
+        def get_travel
+            current_user.travels.find(params[:id])
         end
 end

@@ -1,11 +1,12 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#user-show-top {
+.user-show-top {
     height: 350px;
+    background: #000;
     .card-img {
-        object-fit: cover;
         height: 350px;
+        opacity: .7;
     }
 }
 
@@ -19,9 +20,63 @@
     }
 }
 
+#user-show-travels {
+    height: 485px;
+    img {
+        height: 200px;
+    }
+}
 
-#user-index {
-    button {
-        height: 10%;
+
+.user-index-top {
+    width: 100%;
+    height: 400px;
+    background: #000;
+    color: white;
+    img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        opacity: .3;
+    }
+    .card-img-overlay {
+        margin-top: 50%;
+    }
+}
+
+#user-index-content {
+    height: 535px;
+    .card-img-top {
+        height: 180px;
+    }
+    .card-img-overlay {
+        height: 180px;
+    }
+    
+}
+
+.user-index-travel_img {
+    height: 120px;
+    width: 120px;
+    border-radius: 5px;
+}
+
+.user-background-img {
+    width: 350px;
+    height: 250px;
+}
+
+.hidden_field-user-img {
+    display: none;
+}
+
+.hidden_field-user-back-img {
+    display: none;
+}
+
+#like-event {
+    height: 550px;
+    img {
+        height: 200px;
     }
 }

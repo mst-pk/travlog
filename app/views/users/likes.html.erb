@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="mt-5 text-center">いいねしたTravel一覧</h1>
+  <div class="row">
+        <% @likes.each do |event| %>
+            <div class="col-sm-4 mt-4" id="like-event">
+                <div class="card shadow">
+                    <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
+                    <div class="card-body text-center">
+                        <small class="border-bottom"><%= event.event_date.year %>年<%= event.event_date.month %>月<%= event.event_date.day %>日</small>
+                        <h5 class="border-bottom mt-2 pb-2"><%= event.title %></h5>
+                        <p>住所</p>
+                        <p class="border-bottom pb-2"><%= event.address %></p>
+                        <div class="btn-group mt-3 mb-3">
+                            <% if current_user == @user %>
+                                <%= link_to "編集", edit_travel_event_path(event.travel,event), class: "btn btn-light border" %>
+                                <%= link_to "削除", travel_event_path(event.travel,event), method: :delete, class: "btn btn-danger ml-2" %>
+                            <% end %>
+                        </div>
+                        <%= render 'likes/like_button', event: event %>
+                        <i class="fas fa-thumbs-up"></i><%= Like.where(event_id: event.id).count %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        <%= paginate @likes %>
+  </div>
+</div>

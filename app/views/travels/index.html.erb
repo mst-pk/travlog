@@ -1,44 +1,19 @@
 <div class="travel-index-top card">
-    <img class="card-img" src="assets/index_top.jpg">
+    <img class="card-img" src="assets/travel_index_top">
     <div class="card-img-overlay text-center mt-4">
-        <% if current_user.followings.present? %>
-            <h2>Travelを発見！</h2>
-            <p>あなたの好みの旅を探そう！</p>
-        <% else %>
-            <h2>Travelを発見！</h2>
-            <p>まだ誰もフォローしていない？<br>気になるトラベラーを見つけてフォローしよう！</p>
-            <p>または、あなたの旅の記録を残そう！</p>
-            <%= link_to "トラベラーを見つけに行く", users_path, class: "btn btn-success rounded-pill mt-2" %>
-            <p class="m-3">OR</p>
-            <%= link_to "Travelを作成する", new_travel_path, class: "btn btn-success rounded-pill" %>
-        <% end %>
+        <h2 class="mb-5">Travelを発見！</h2>
+        <p>気になるトラベラーを見つけてフォローしよう！</p>
+        <%= link_to "トラベラーを見つけに行く", users_path, class: "btn btn-success rounded-pill" %>
+        <p class="m-2">OR</p>
+        <p>あなたの旅の記録を残そう！</p>
+        <%= link_to "Travelを作成する", new_travel_path, class: "btn btn-success rounded-pill" %>
     </div>
 </div>
 <div class="container mt-5">
     <div class="row">
         <% @travels.each do |travel| %>
-            <div class="col-sm-3" id="travel-index-content">
-                <div class="card shadow">
-                    <%= image_tag "#{travel.travel_image}", class: "card-img-top img-fluid" %>
-                    <div class="card-body">
-                        <small><%= travel.start_date %> ~ <%= travel.end_date %></small><br>
-                        <div><%= link_to "#{travel.title}", travel_path(travel) %></div>
-                        <div class="border-bottom pb-2"><small><%= travel.genre %></small></div>
-                        <btn class="btn btn-link" type="button" data-toggle="collapse" data-target="#CollapseEvents<%= travel.id %>" aria-expanded="false" aria-controls="#CollapseEvents<%= travel.id %>">この投稿のEvents</btn>
-                        <div class="collapse multi-collapse" id="CollapseEvents<%= travel.id %>">
-                        <ul class="card card-body list-unstyled">
-                        <% travel.events.each do |event| %>
-                            <% if event %>
-                                <li class="border-bottom"><%= event.event_date.month %>月<%= event.event_date.day %>日: <%=event.title%></li>
-                            <% end %>
-                        <% end %>
-                        </ul>
-                        </div>
-                        <div class="border-bottom border-top"><small>By <%= link_to "#{travel.user.name}", user_path(travel.user) %></small></div>
-                        <p class="mt-3"><%= link_to "詳細を見る", travel_path(travel), class: "btn btn-primary rounded-pill" %></p>
-                        <i class="fas fa-thumbs-up"></i><%= Favorite.where(travel_id: travel.id).count %>
-                    </div>
-                </div>
+            <div class="col-sm-3 text-center" id="travel-index-content">
+                <%= render 'layouts/travel_index', travel: travel %>
             </div>
         <% end %>
     </div>

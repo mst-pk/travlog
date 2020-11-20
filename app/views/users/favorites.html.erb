@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="mt-5 text-center">いいねしたTravel一覧</h1>
+  <div class="row">
+    <% @favorites.each do |travel| %>
+        <div class="col-sm-3 text-center">
+            <%= render 'layouts/travel_index', travel: travel %>
+        </div>
+        <%= paginate @favorites %>
+    <% end %>
+  </div>
+</div>

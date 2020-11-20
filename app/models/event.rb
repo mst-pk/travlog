@@ -8,4 +8,7 @@ class Event < ApplicationRecord
   after_validation :geocode, if: :address_changed?
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
+  
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :event_date, presence: true
 end
