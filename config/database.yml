@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: travlog_production
   username: travlog
   password: <%= ENV['TRAVLOG_DATABASE_PASSWORD'] %>
