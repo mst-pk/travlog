@@ -1,5 +1,9 @@
 <div class="card shadow">
-    <%= image_tag "#{travel.travel_image}", class: "card-img-top img-fluid" %>
+    <% if travel.travel_image? %>
+        <%= image_tag "#{travel.travel_image}", class: "card-img-top img-fluid" %>
+    <% else %>
+        <img src="/assets/background_default" class="card-img-top img-fluid">
+    <% end %>
     <div class="card-body">
         <small><%= travel.start_date.strftime("%Y年%m月%d日") %> ~ <%= travel.end_date.strftime("%Y年%m月%d日") %></small><br>
         <div><%= travel.title %></div>

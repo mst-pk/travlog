@@ -29,9 +29,10 @@ class EventsController < ApplicationController
     end
     
     def edit
+        @num = 0
         @event = @travel.events.find(params[:id])
         @event_picture = @event.event_pictures.where(event_id: @event.id)
-        (5 - @event_picture.count).times{ @event.event_pictures.build }
+        (3 - @event_picture.count).times{ @event.event_pictures.build }
     end
     
     def update

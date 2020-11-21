@@ -4,7 +4,11 @@
         <% @likes.each do |event| %>
             <div class="col-sm-4 mt-4" id="like-event">
                 <div class="card shadow">
-                    <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
+                    <% if event.event_pictures.first? %>
+                        <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
+                    <% else %>
+                        <img src="/assets/background_default" class="card-img-top">
+                    <% end %>
                     <div class="card-body text-center">
                         <small class="border-bottom"><%= event.event_date.year %>年<%= event.event_date.month %>月<%= event.event_date.day %>日</small>
                         <h5 class="border-bottom mt-2 pb-2"><%= event.title %></h5>
