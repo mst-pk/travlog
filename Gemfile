@@ -62,7 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem 'carrierwave'
-gem 'cloudinary'
+gem 'cloudinary', '~> 1.3', '>= 1.3.1'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'jquery-rails'
