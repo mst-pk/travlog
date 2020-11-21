@@ -33,7 +33,7 @@ class TravelsController < ApplicationController
     
     def update
         if @travel.update(travel_params)
-            flash[:success] = "編集しました。"
+            flash[:success] = "Travelを編集しました。"
             redirect_to travel_url(@travel)
         else
             flash[:danger] = "編集に失敗しました。"

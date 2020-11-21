@@ -20,10 +20,10 @@ class EventsController < ApplicationController
         @event = @travel.events.build(event_params)
         get_location_from_jpeg if params[:address].nil?
         if @event.save
-            flash[:success] = "投稿しました。"
+            flash[:success] = "Eventを作成しました。"
             redirect_to [@travel,@event]
         else
-            flash.now[:danger] = "投稿に失敗しました。"
+            flash.now[:danger] = "作成に失敗しました。"
             render :new
         end
     end
@@ -39,14 +39,14 @@ class EventsController < ApplicationController
         @event = @travel.events.find(params[:id])
         get_location_from_jpeg if params[:address].nil?
         @event.update(update_event_params)
-        flash[:success] = "投稿を編集しました"
+        flash[:success] = "Eventを編集しました"
         redirect_to [@travel,@event]
     end
     
     def destroy
         @event = @travel.events.find(params[:id])
         @event.destroy
-        flash[:success] = "投稿を削除しました。"
+        flash[:success] = "Eventを削除しました。"
         redirect_to travel_url(@travel)
     end
     
