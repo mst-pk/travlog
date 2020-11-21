@@ -14,7 +14,7 @@
                 <div class="form-group border-bottom pb-3">
                     <h5>画像(<span style="color: red;">JPEG形式のみ</span>)</h5>
                     <%= f.fields_for :event_pictures do |i| %>
-                        <img src="<%= @event_picture[@num].picture %>" class="event-form-img-<%= @num %>">
+                        <img class="event-form-img-<%= @num %>">
                         <%= i.label :picture, "画像を選択", class: "btn btn-light border rounded-pill mr-2" %>
                         <%= i.file_field :picture, class: "hidden_field-event-img-#{@num}" %>
                         <% @num += 1 %>
