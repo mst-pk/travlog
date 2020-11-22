@@ -4,7 +4,7 @@
             <h1 class="text-center border-bottom m-4 pb-3">Event編集</h1>
             <%= form_with(model: [@travel,@event], local: true) do |f| %>
                 <div class="form-group border-bottom pb-3">
-                    <h5><%= f.label :title, "タイトル" %><span class="required-item ml-2">必須</span></h5>
+                    <h5><%= f.label :title, "タイトル" %>
                     <%= f.text_field :title, class: "form-control" %>
                 </div>
                 <div class="form-group border-bottom pb-3">
@@ -21,7 +21,7 @@
                     <% end %>
                 </div>
                 <div class="form-group border-bottom pb-3">
-                    <h5><%= f.label :event_date, "旅行日" %><span class="required-item ml-2">必須</span></h5>
+                    <h5><%= f.label :event_date, "Event日" %>
                     <%= f.date_select :event_date, start_year: 1940, end_year: Time.now.year, class: "form-control" %>
                 </div>
                 <div class="form-group border-bottom pb-3">

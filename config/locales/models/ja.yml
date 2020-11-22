@@ -17,3 +17,6 @@ ja:
     genre: ジャンル
     start_date: Travel開始日
     end_date: Travel終了日
+   event:
+    title: タイトル
+    event_date: Event日
