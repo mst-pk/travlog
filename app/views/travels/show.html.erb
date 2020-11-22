@@ -1,5 +1,9 @@
 <div class="travel-show-top card">
-    <%= image_tag "#{@travel.travel_image}", class: "card-img img-fluid" %>
+    <% if @travel.travel_image? %>
+        <%= image_tag "#{@travel.travel_image}", class: "card-img img-fluid", style: "object-fit: cover;" %>
+    <% else %>
+        <img src="/assets/background_default" class="card-img">
+    <% end %>
     <div class="card-img-overlay text-center">
         <div class="card-body mt-3">
             <h2><%= @travel.title %></h2>
@@ -31,7 +35,11 @@
             <% @events.each do |event| %>
                 <div class="col-sm-4 mt-4" id="travel-show-event">
                     <div class="card shadow">
-                        <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
+                        <% if event.event_pictures.present? %>
+                            <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
+                        <% else %>
+                            <img src="/assets/background_default" class="card-img-top">
+                        <% end %>
                         <div class="card-body text-center">
                             <small class="border-bottom"><%= event.event_date.year %>年<%= event.event_date.month %>月<%= event.event_date.day %>日</small>
                             <h5 class="border-bottom mt-2 pb-2"><%= event.title %></h5>

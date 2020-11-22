@@ -4,7 +4,7 @@
         <% @likes.each do |event| %>
             <div class="col-sm-4 mt-4" id="like-event">
                 <div class="card shadow">
-                    <% if event.event_pictures.first? %>
+                    <% if event.event_pictures.first %>
                         <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
                     <% else %>
                         <img src="/assets/background_default" class="card-img-top">
