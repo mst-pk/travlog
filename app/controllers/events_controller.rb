@@ -37,7 +37,6 @@ class EventsController < ApplicationController
     
     def update
         @event = @travel.events.find(params[:id])
-        get_location_from_jpeg if params[:address].nil?
         @event.update(update_event_params)
         flash[:success] = "Eventを編集しました"
         redirect_to [@travel,@event]
