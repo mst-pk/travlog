@@ -55,6 +55,7 @@ class TravelsController < ApplicationController
         def correct_user
             @travel = current_user.travels.find_by(id: params[:id])
             redirect_to travels_url unless @travel
+            flash[:danger] = "無効な操作です。"
         end
         
         def get_travel

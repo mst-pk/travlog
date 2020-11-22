@@ -61,6 +61,7 @@ class EventsController < ApplicationController
         def correct_user
             @travel = current_user.travels.find_by(id: params[:travel_id])
             redirect_to users_url unless @travel
+            flash[:danger] = "無効な操作です。"
         end
         
          def get_travel
