@@ -33,7 +33,7 @@
     <div class="row">
         <% if @events.present? %>
             <% @events.each do |event| %>
-                <div class="col-lg-4 mt-4" id="travel-show-event">
+                <div class="col-lg-4 mt-4 mb-5" id="travel-show-event">
                     <div class="card shadow">
                         <% if event.event_pictures.present? %>
                             <%= image_tag "#{event.event_pictures.first.picture}", class: "card-img-top" %>
@@ -44,7 +44,7 @@
                             <small class="border-bottom"><%= event.event_date.year %>年<%= event.event_date.month %>月<%= event.event_date.day %>日</small>
                             <h5 class="border-bottom mt-2 pb-2"><%= event.title %></h5>
                             <p>住所</p>
-                            <p class="border-bottom pb-2"><%= event.address %></p>
+                            <p class="address border-bottom pb-2"><%= event.address %></p>
                             <div><%= link_to "このEventを見る", travel_event_path(@travel,event), class: "btn btn-primary" %></div>
                             <div class="btn-group mt-3 mb-3">
                                 <% if current_user == @user %>
