@@ -12,7 +12,7 @@
 <div class="container mt-5">
     <div class="row">
         <% @travels.each do |travel| %>
-            <div class="col-sm-3 text-center" id="travel-index-content">
+            <div class="col-lg-4 text-center mb-5" id="travel-index-content">
                 <%= render 'layouts/travel_index', travel: travel %>
             </div>
         <% end %>

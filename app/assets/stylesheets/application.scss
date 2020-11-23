@@ -25,6 +25,12 @@ header {
     background: #cc3333;
 }
 
+#travel-index-card-body {
+    position: relative;
+    z-index: 15;
+    background: white;
+}
+
 #flash-messages {
     position: absolute;
     z-index: 10;
@@ -32,10 +38,6 @@ header {
 }
  /* For tablet design */
  @media screen and (max-width: 959px){
-     
- }
- /* For smartphone design */
- @media screen and (max-width: 480px){
      
  }
  

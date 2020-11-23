@@ -55,12 +55,6 @@
     
 }
 
-.user-index-travel_img {
-    height: 120px;
-    width: 120px;
-    border-radius: 5px;
-}
-
 .user-background-img {
     width: 350px;
     height: 250px;
@@ -79,4 +73,15 @@
     img {
         height: 200px;
     }
+}
+
+#user-index-card-body {
+    position: relative;
+    z-index: 15;
+    background: white;
+}
+
+.user-profile-about {
+    word-wrap: break-word;
+    width: 100%;
 }

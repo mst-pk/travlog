@@ -2,7 +2,7 @@
     <% if @user.background_image? %>
         <img src="<%= @user.background_image %>" class=" card-img img-fluid">
     <% else %>
-        <img src="/assets/background_default" class=" card-img img-fluid">
+        <img src="/assets/user_background" class=" card-img img-fluid">
     <% end %>
     <div class="card-img-overlay mt-5 text-center" id="user-show-topcontents">
         <%= render 'users/user_image', user: @user %>
@@ -28,7 +28,7 @@
                 <h5 class="border-bottom pb-2">性別</h5>
                 <p class="text-center"><%= @user.gender %></p>
                 <h5 class="border-bottom pb-2">自己紹介</h5>
-                <p class="text-center"><%= @user.about %></p>
+                <div class="text-center user-profile-about"><%= simple_format(@user.about) %></div>
             </div>
             <div class="text-center mb-3"><%= link_to "いいねしたTravel", favorites_user_path(@user), class: "btn btn-info" %></div>
             <div class="text-center mb-3"><%= link_to "Good！したEvent", likes_user_path(@user), class: "btn btn-info" %></div>
@@ -38,7 +38,7 @@
             <h4 class="text-center"><%= link_to "新しいTravelを作成", new_travel_path, class: "btn btn-success" if current_user == @user %></h4>
             <div class="row">
                 <% @user.travels.each do |travel| %>
-                    <div class="col-sm-6 text-center" id="user-show-travels">
+                    <div class="col-lg-6 text-center mb-5" id="user-show-travels">
                         <%= render 'layouts/travel_index', travel: travel %>
                     </div>
                 <% end %>

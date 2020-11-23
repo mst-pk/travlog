@@ -1,41 +1,49 @@
-<div class="col-sm-4" id="user-index-content">
+<div class="col-lg-4 mb-5" id="user-index-content">
     <div class="card shadow">
         <% if user.background_image? %>
             <img src="<%= user.background_image %>" class=" card-img-top">
         <% else %>
-            <img src="/assets/background_default" class=" card-img-top">
+            <img src="/assets/user_background" class=" card-img-top">
         <% end %>
         <div class="card-img-overlay">
           <%= render 'users/user_image', user: user %>
           <p class="user-name text-center"><%= user.name %></p>
           <div class="text-center"><%= render 'relationships/follow_button', user: user %></div>
         </div>
-        <div class="card-body text-center">
-          <div class="border-bottom pb-2">
+        <div class="card-body shadow text-center" id="user-index-card-body">
+          <div class="border-bottom pb-1">
             <%= user.age %>歳
             <%= user.gender %>
           </div>
-          <div class="border-bottom mt-2" style="height: 150px;">
-            <%= simple_format(user.about.truncate(85)) if user.about %>
+          <div class="mt-2 mb-1" style="height: 120px;">
+            <%= simple_format(user.about.truncate(65)) if user.about %>
           </div>
-          <div class="border-bottom pb-2">
+          <div class="border-bottom mt-2 pb-2">
             <btn class="btn btn-link" type="button" data-toggle="collapse" data-target="#CollapseTravel<%= user.id %>" aria-expanded="false" aria-controls="#CollapseTravel<%= user.id %>"><%= user.name %>のTravel</btn>
             <div class="collapse multi-collapse" id="CollapseTravel<%= user.id %>">
               <ul class="card card-body list-unstyled">
+                <% @travel_count = 0 %>
                 <% user.travels.each do |travel| %>
                   <li class="border-bottom">
-                    <div class="mb-2">
-                      <p><%= travel.start_date.strftime("%Y年%m月%d日") %> ~ <%= travel.end_date.strftime("%Y年%m月%d日") %><br><%= travel.title %></p>
-                      <%= image_tag "#{travel.travel_image}", class: "user-index-travel_img mb-2" %>
-                      <%= link_to "詳細を見る", travel_path(travel), class: "mb-2 btn btn-light rounded-pill border" %>
+                    <div class="mb-1">
+                      <small>
+                        <%= travel.start_date.strftime("%Y年%m月%d日") %>~<%= travel.end_date.strftime("%Y年%m月%d日") %> <%= link_to "#{travel.title}", travel_path(travel), class: "mb-2" %>
+                      </small>
                     </div>
                   </li>
+                  <% @travel_count += 1 %>
+                  <% break if @travel_count > 2 %>
                 <% end %>
-                <li class="mt-2"><%= link_to "Travel作成", new_travel_path if current_user == user %></li>
+                <li>
+                  <% if user.travels.count > 3 %>
+                    <small>...</small>
+                  <% end %>
+                </li>
+                <li class="mt-1"><%= link_to "Travel作成", new_travel_path if current_user == user %></li>
               </ul>
             </div>
           </div>
-          <div class="mt-3">
+          <div class="mt-2">
             <%= link_to "#{user.name}詳細", user_path(user), class: "btn btn-primary rounded-pill" %>
           </div>
         </div>

@@ -1,20 +1,24 @@
-<div class="card shadow">
+<div class="card shadow" id="travel-index-card">
     <% if travel.travel_image? %>
-        <%= image_tag "#{travel.travel_image}", class: "card-img-top img-fluid" %>
+        <%= image_tag "#{travel.travel_image}", class: "card-img-top border-bottom shadow img-fluid" %>
     <% else %>
-        <img src="/assets/background_default" class="card-img-top img-fluid">
+        <img src="/assets/background_default" class="card-img-top border-bottom shadow img-fluid" style="background: white;">
     <% end %>
-    <div class="card-body">
-        <small><%= travel.start_date.strftime("%Y年%m月%d日") %> ~ <%= travel.end_date.strftime("%Y年%m月%d日") %></small><br>
+    <div class="card-body shadow" id="travel-index-card-body">
+        <small style="font-size: 12px;"><%= travel.start_date.strftime("%Y年%m月%d日") %>〜<%= travel.end_date.strftime("%Y年%m月%d日") %></small><br>
         <div><%= travel.title %></div>
         <div class="border-bottom pb-2"><small><%= travel.genre %></small></div>
         <btn class="btn btn-link" type="button" data-toggle="collapse" data-target="#CollapseEvents<%= travel.id %>" aria-expanded="false" aria-controls="#CollapseEvents<%= travel.id %>">この投稿のEvents</btn>
         <div class="collapse multi-collapse" id="CollapseEvents<%= travel.id %>">
-        <ul class="card card-body list-unstyled">
+        <ul class="card card-body shadow list-unstyled">
+            <% @event_count = 0 %>
             <% travel.events.each do |event| %>
-                <% if event %>
-                    <li class="border-bottom pb-2"><%= link_to "#{event.event_date.strftime("%m月%d日")}: #{event.title}", travel_event_path(travel,event) %></li>
-                <% end %>
+                <li class="border-bottom pb-2"><%= link_to "#{event.event_date.strftime("%m月%d日")}: #{event.title}", travel_event_path(travel,event) %></li>
+                <% @event_count += 1 %>
+                <% break if @event_count > 2 %>
+            <% end %>
+            <% if travel.events.count >= 3 %>
+                <p>...</p>
             <% end %>
             <li class="mt-2"><%= link_to "Eventを作成する", new_travel_event_path(travel) if current_user == travel.user %></li>
         </ul>

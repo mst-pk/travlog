@@ -15,7 +15,7 @@
                         <% if @user.background_image? %>
                             <img src="<%= @user.background_image %>" class="user-background-img img-fluid d-block mx-auto">
                         <% else %>
-                            <img src="/assets/background_default" class="user-background-img img-fluid d-block mx-auto">
+                            <img src="/assets/user_background" class="user-background-img img-fluid d-block mx-auto">
                         <% end %>
                         <div class="text-center mt-4"><%= f.file_field :background_image, class: "hidden_field-user-back-img" %></div>
                         <div class="text-center"><%= f.label :background_image, "画像を変更", class: "btn btn-success rounded-pill" %></div>
