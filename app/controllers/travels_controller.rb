@@ -4,7 +4,7 @@ class TravelsController < ApplicationController
     before_action :get_travel, except: [:index, :show, :new, :create]
     
     def index
-        @travels = Travel.where(user_id: current_user.followings.ids + [current_user.id]).order(id: :desc).page(params[:page])
+        @travels = Travel.order(id: :desc).page(params[:page])
     end
     
     def show
