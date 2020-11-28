@@ -10,4 +10,12 @@ class Travel < ApplicationRecord
   validates :genre, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  
+  def self.search(search)
+    if search
+      Travel.where(genre: search)
+    else
+      Travel.all
+    end
+  end
 end

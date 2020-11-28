@@ -1,10 +1,18 @@
 class TravelsController < ApplicationController
     before_action :require_logged_in
     before_action :correct_user, only: [:update, :destroy, :edit]
-    before_action :get_travel, except: [:index, :show, :new, :create]
+    before_action :get_travel, except: [:index, :foreign, :domestic, :show, :new, :create]
     
     def index
-        @travels = Travel.order(id: :desc).page(params[:page])
+        @travels = Travel.search(params[:search])
+    end
+    
+    def domestic
+        @travels = Travel.国内.order(id: :desc).page(params[:page])
+    end
+    
+    def foreign
+        @travels = Travel.海外.order(id: :desc).page(params[:page])
     end
     
     def show

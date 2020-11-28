@@ -5,9 +5,9 @@
         <div class="border-bottom border-top pb-2">
           <%= link_to travel_path(@travel) do %>
             <% if @travel.travel_image? %>
-              <%= image_tag "#{@travel.travel_image}", class: "m-3", style: "width: 64px; height: 64px; border-radius: 50%;" %>
+              <%= image_tag "#{@travel.travel_image}", class: "m-3 border", style: "width: 64px; height: 64px; border-radius: 50%;" %>
             <% else %>
-              <img src="/assets/background_default" class="m-3" style="width: 64px; height: 64px; border-radius: 50%">
+              <img src="/assets/background_default" class="m-3 border" style="width: 64px; height: 64px; border-radius: 50%">
             <% end %>
             <p><%= @travel.title %></p>
           <% end %>
