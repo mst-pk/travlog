@@ -27,7 +27,7 @@
                   <li class="border-bottom">
                     <div class="mb-1">
                       <small>
-                        <%= travel.start_date.strftime("%Y年%m月%d日") %>~<%= travel.end_date.strftime("%Y年%m月%d日") %> <%= link_to "#{travel.title}", travel_path(travel), class: "mb-2" %>
+                        <%= travel.start_time.strftime("%Y年%m月%d日") %>~<%= travel.end_time.strftime("%Y年%m月%d日") %> <%= link_to "#{travel.title}", travel_path(travel), class: "mb-2" %>
                       </small>
                     </div>
                   </li>

@@ -5,7 +5,7 @@
         <img src="/assets/background_default" class="card-img-top border-bottom shadow img-fluid" style="background: white;">
     <% end %>
     <div class="card-body shadow" id="travel-index-card-body">
-        <small style="font-size: 12px;"><%= travel.start_date.strftime("%Y年%m月%d日") %>〜<%= travel.end_date.strftime("%Y年%m月%d日") %></small><br>
+        <small style="font-size: 12px;"><%= travel.start_time.strftime("%Y年%m月%d日") %>〜<%= travel.end_time.strftime("%Y年%m月%d日") %></small><br>
         <div><%= travel.title %></div>
         <div class="border-bottom pb-2"><small><%= travel.genre %></small></div>
         <btn class="btn btn-link" type="button" data-toggle="collapse" data-target="#CollapseEvents<%= travel.id %>" aria-expanded="false" aria-controls="#CollapseEvents<%= travel.id %>">この投稿のEvents</btn>

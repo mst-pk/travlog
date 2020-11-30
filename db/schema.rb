@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_154950) do
     t.string "title"
     t.string "travel_image"
     t.integer "genre"
-    t.date "start_date"
-    t.date "end_date"
+    t.date "start_time"
+    t.date "end_time"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

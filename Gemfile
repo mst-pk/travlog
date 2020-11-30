@@ -68,6 +68,7 @@ gem 'geocoder'
 gem 'jquery-rails'
 gem 'exifr'
 gem 'rails-i18n'
+gem 'simple_calendar'
 
 group :production do
   gem 'pg'

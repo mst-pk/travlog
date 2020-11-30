@@ -1,6 +1,15 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.user-show {
+    height: auto;
+    width: 100%;
+}
+
+.user-show-profile {
+    background: white;
+}
+
 .user-show-top {
     height: 350px;
     background: #000;
@@ -84,4 +93,18 @@
 .user-profile-about {
     word-wrap: break-word;
     width: 100%;
+}
+
+.simple-calendar {
+    .wday-0 {
+        background: rgba(255, 0, 0, 0.26);
+    }
+    
+    .wday-6 {
+        background: rgba(0, 88, 242, 0.25);
+    }
+    
+    .today {
+        background: rgba(245, 255, 8, 0.12);
+    }
 }

@@ -1,47 +1,60 @@
-<div class="user-show-top card">
-    <% if @user.background_image? %>
-        <img src="<%= @user.background_image %>" class=" card-img img-fluid">
-    <% else %>
-        <img src="/assets/user_background" class=" card-img img-fluid">
-    <% end %>
-    <div class="card-img-overlay mt-5 text-center" id="user-show-topcontents">
-        <%= render 'users/user_image', user: @user %>
-        <p class="text-center"><%= @user.name %></p>
-        <div>
-            <a href="<%= followings_user_path(@user) %>" class="mr-3 btn btn-info">フォロー<span class="badge badge-light ml-2"><%= @count_followings %></span></a>
-            <a href="<%= followers_user_path(@user) %>" class="ml-2 btn btn-info">フォロワー<span class="badge badge-light ml-2"><%= @count_followers %></span></a>
-        </div>
-        <div class="mt-3">
-            <%= render 'relationships/follow_button', user: @user %>
+<div class="user-show">
+    <div class="user-show-top card">
+        <% if @user.background_image? %>
+            <img src="<%= @user.background_image %>" class=" card-img img-fluid">
+        <% else %>
+            <img src="/assets/user_background" class=" card-img img-fluid">
+        <% end %>
+        <div class="card-img-overlay mt-5 text-center" id="user-show-topcontents">
+            <%= render 'users/user_image', user: @user %>
+            <p class="text-center"><%= @user.name %></p>
+            <div>
+                <a href="<%= followings_user_path(@user) %>" class="mr-3 btn btn-info">フォロー<span class="badge badge-light ml-2"><%= @count_followings %></span></a>
+                <a href="<%= followers_user_path(@user) %>" class="ml-2 btn btn-info">フォロワー<span class="badge badge-light ml-2"><%= @count_followers %></span></a>
+            </div>
+            <div class="mt-3">
+                <%= render 'relationships/follow_button', user: @user %>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3 border mt-4 rounded">
-            <h3 class="text-center mt-5">プロフィール</h3>
-            <div class="mt-5 mb-5 p-2 border-bottom">
-                <h5 class="border-bottom pb-2">名前</h5>
-                <p class="text-center"><%= @user.name %></p>
-                <h5 class="border-bottom pb-2">年齢</h5>
-                <p class="text-center"><%= @user.age %></p>
-                <h5 class="border-bottom pb-2">性別</h5>
-                <p class="text-center"><%= @user.gender %></p>
-                <h5 class="border-bottom pb-2">自己紹介</h5>
-                <div class="text-center user-profile-about"><%= simple_format(@user.about) %></div>
-            </div>
-            <div class="text-center mb-3"><%= link_to "いいねしたTravel", favorites_user_path(@user), class: "btn btn-info" %></div>
-            <div class="text-center mb-3"><%= link_to "Good！したEvent", likes_user_path(@user), class: "btn btn-info" %></div>
-        </div>
-        <div class="offset-sm-1 col-sm-8 mt-4" id="user-show-travels">
-            <h2 class="text-center mt-4 mb-3"><%= @user.name %>のTravel</h2>
-            <h4 class="text-center"><%= link_to "新しいTravelを作成", new_travel_path, class: "btn btn-success" if current_user == @user %></h4>
-            <div class="row">
-                <% @user.travels.each do |travel| %>
-                    <div class="col-lg-6 text-center mb-5" id="user-show-travels">
-                        <%= render 'layouts/travel_index', travel: travel %>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mt-4">
+                <div class="user-show-profile border rounded">
+                    <h3 class="text-center mt-5">プロフィール</h3>
+                    <div class="mt-5 mb-5 p-2 border-bottom">
+                        <h5 class="border-bottom pb-2">名前</h5>
+                        <p class="text-center"><%= @user.name %></p>
+                        <h5 class="border-bottom pb-2">年齢</h5>
+                        <p class="text-center"><%= @user.age %></p>
+                        <h5 class="border-bottom pb-2">性別</h5>
+                        <p class="text-center"><%= @user.gender %></p>
+                        <h5 class="border-bottom pb-2">自己紹介</h5>
+                        <div class="text-center user-profile-about"><%= simple_format(@user.about) %></div>
                     </div>
-                <% end %>
+                    <div class="text-center mb-3"><%= link_to "いいねしたTravel", favorites_user_path(@user), class: "btn btn-info" %></div>
+                    <div class="text-center mb-3"><%= link_to "Good！したEvent", likes_user_path(@user), class: "btn btn-info" %></div>
+                </div>
+                <div class="mt-4 mb-4">
+                    <%= month_calendar events: @user.travels do |date, travels| %>
+                        <%= date.day %>
+                        <% travels.each do |travel| %>
+                            <div style="font-size: 1px;">
+                                <small class="calendar-travels-title"><%= link_to travel.title.truncate(7), travel %></small>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-6 mt-4" id="user-show-travels">
+                <h2 class="text-center mt-4 mb-3"><%= @user.name %>のTravel</h2>
+                <div class="row">
+                    <% @user.travels.each do |travel| %>
+                        <div class="col-lg-10 offset-lg-1 mt-5">
+                            <%= render 'layouts/travel_index', travel: travel %>
+                        </div>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>

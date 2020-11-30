@@ -57,7 +57,7 @@ class TravelsController < ApplicationController
     
     private
         def travel_params
-            params.require(:travel).permit(:title, :travel_image, :genre, :start_date, :end_date)
+            params.require(:travel).permit(:title, :travel_image, :genre, :start_time, :end_time)
         end
         
         def correct_user

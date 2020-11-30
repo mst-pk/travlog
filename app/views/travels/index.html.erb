@@ -2,13 +2,8 @@
     <img class="card-img" src="/assets/travel_index_top">
     <div class="card-img-overlay text-center mt-4">
         <h2 class="mb-3">Travelを発見！</h2>
-        <p>気になるトラベラーを見つけてフォローしよう！</p>
-        <%= link_to "トラベラーを見つけに行く", users_path, class: "btn btn-success rounded-pill" %>
-        <p class="m-2">OR</p>
-        <p>あなたの旅の記録を残そう！</p>
-        <%= link_to "Travelを作成する", new_travel_path, class: "btn btn-success rounded-pill" %>
         <%= form_with url: travels_path, method: :get, local: true do %>
-            <div class="search-form mt-3 pt-2 pb-2">
+            <div class="search-form mt-3 pt-2 pb-2 text-center">
                 <span class="mr-2">
                     <%= label_tag "国内" %>
                     <%= radio_button_tag :search, "国内" %>
@@ -20,6 +15,11 @@
                 <%= submit_tag "検索" %>
             </div>
         <% end %>
+        <p>気になるトラベラーを見つけてフォローしよう！</p>
+        <%= link_to "トラベラーを見つけに行く", users_path, class: "btn btn-success rounded-pill" %>
+        <p class="m-2">OR</p>
+        <p>あなたの旅の記録を残そう！</p>
+        <%= link_to "Travelを作成する", new_travel_path, class: "btn btn-success rounded-pill" %>
     </div>
 </div>
 <div class="container mt-5">
