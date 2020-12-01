@@ -26,5 +26,12 @@
         <%= f.label :end_time, "Travel 終了日" %>
         <%= f.date_field :end_time %>
     </div>
+    <div class="form-group pb-4 border-bottom">
+        <h4><%= f.label :status, "公開・非公開" %></h4>
+        <%= f.label "released" %>
+        <%= f.radio_button :status, "released" %>
+        <%= f.label "nonreleased" %>
+        <%= f.radio_button :status, "nonreleased" %>
+    </div>
     <%= f.submit "送信", class: "btn btn-primary btn-block mb-4" %>
 <% end %>

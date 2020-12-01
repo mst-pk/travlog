@@ -1,0 +1,7 @@
+<div>
+    <% @travels.each do |travel| %>
+        <div class="col-lg-4 text-center mt-4">
+            <%= render 'layouts/travel_index', travel: travel %>
+        </div>
+    <% end %>
+</div>

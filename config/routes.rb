@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get :followers
       get :likes
       get :favorites
+      get :nonreleased
     end
   end
   

@@ -74,6 +74,11 @@ class UsersController < ApplicationController
         @favorites = @user.favorite_travels.order(id: :desc).page(params[:page]).per(30)
     end
     
+    def nonreleased
+        @travels = @user.travels.nonreleased
+        redirect_to user_path(@user) unless current_user == @user
+    end
+    
     private
     
         def user_params

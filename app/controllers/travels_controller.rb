@@ -7,18 +7,14 @@ class TravelsController < ApplicationController
         @travels = Travel.search(params[:search])
     end
     
-    def domestic
-        @travels = Travel.国内.order(id: :desc).page(params[:page])
-    end
-    
-    def foreign
-        @travels = Travel.海外.order(id: :desc).page(params[:page])
-    end
-    
     def show
         @travel = Travel.find(params[:id])
         @events = @travel.events
         @user = User.find_by(id: @travel.user_id)
+        if @travel.nonreleased? && current_user != @user
+            redirect_to travels_url
+            flash[:warning] = "この投稿は非公開です。"
+        end
     end
     
     def new
@@ -57,7 +53,7 @@ class TravelsController < ApplicationController
     
     private
         def travel_params
-            params.require(:travel).permit(:title, :travel_image, :genre, :start_time, :end_time)
+            params.require(:travel).permit(:title, :travel_image, :genre, :start_time, :end_time, :status)
         end
         
         def correct_user

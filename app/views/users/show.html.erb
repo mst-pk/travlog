@@ -34,9 +34,10 @@
                     </div>
                     <div class="text-center mb-3"><%= link_to "いいねしたTravel", favorites_user_path(@user), class: "btn btn-info" %></div>
                     <div class="text-center mb-3"><%= link_to "Good！したEvent", likes_user_path(@user), class: "btn btn-info" %></div>
+                    <div class="text-center mb-3"><%= link_to "非公開の投稿", nonreleased_user_path(@user), class: "btn btn-info" if current_user == @user %></div>
                 </div>
                 <div class="mt-4 mb-4">
-                    <%= month_calendar events: @user.travels do |date, travels| %>
+                    <%= month_calendar events: @user.travels.released do |date, travels| %>
                         <%= date.day %>
                         <% travels.each do |travel| %>
                             <div style="font-size: 1px;">
@@ -49,7 +50,7 @@
             <div class="offset-lg-1 col-lg-6 mt-4" id="user-show-travels">
                 <h2 class="text-center mt-4 mb-3"><%= @user.name %>のTravel</h2>
                 <div class="row">
-                    <% @user.travels.each do |travel| %>
+                    <% @user.travels.released.each do |travel| %>
                         <div class="col-lg-10 offset-lg-1 mt-5">
                             <%= render 'layouts/travel_index', travel: travel %>
                         </div>
