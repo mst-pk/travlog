@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     end
     
     def nonreleased
-        @travels = @user.travels.nonreleased
+        @travels = @user.travels.非公開
         redirect_to user_path(@user) unless current_user == @user
     end
     

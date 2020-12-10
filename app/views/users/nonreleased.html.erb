@@ -1,6 +1,7 @@
+<h1 class="text-center mt-5">非公開のTravel</h1>
 <div>
     <% @travels.each do |travel| %>
-        <div class="col-lg-4 text-center mt-4">
+        <div class="col-lg-3 offset-1 text-center mt-4">
             <%= render 'layouts/travel_index', travel: travel %>
         </div>
     <% end %>

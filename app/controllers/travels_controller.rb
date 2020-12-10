@@ -11,7 +11,7 @@ class TravelsController < ApplicationController
         @travel = Travel.find(params[:id])
         @events = @travel.events
         @user = User.find_by(id: @travel.user_id)
-        if @travel.nonreleased? && current_user != @user
+        if @travel.非公開? && current_user != @user
             redirect_to travels_url
             flash[:warning] = "この投稿は非公開です。"
         end
